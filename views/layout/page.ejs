@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <title>Чат программа</title>
+  <style>
+    body {
+      background: #fcfcfc;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">OneLuckyChat</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample07">
+        <ul class="navbar-nav mr-auto">
+          <%-blocks.item1%>
+          <%-blocks.item2%>
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+  <%-body -%>
+
+  <!-- Подключаем jQuery, а также Socket.io -->
+
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+
+  <!-- <script>
+    // Функция для работы с данными на сайте
+    $(function() {
+      // Включаем socket.io и отслеживаем все подключения
+      var socket = io.connect();
+      // Делаем переменные на:
+      var $form = $("#messForm"); // Форму сообщений
+      var $name = $("#name"); // Поле с именем
+      var $textarea = $("#message"); // Текстовое поле
+      var $all_messages = $("#all_mess"); // Блок с сообщениями
+
+      // Отслеживаем нажатие на кнопку в форме сообщений
+      $form.submit(function(event) {
+        // Предотвращаем классическое поведение формы
+        event.preventDefault();
+        // В сокет отсылаем новое событие 'send mess',
+        // в событие передаем различные параметры и данные
+        socket.emit('send mess', {mess: $textarea.val(), name: $name.val(), className: alertClass});
+        // Очищаем поле с сообщением
+        $textarea.val('');
+      });
+
+      // Здесь отслеживаем событие 'add mess', 
+      // которое должно приходить из сокета в случае добавления нового сообщения
+      socket.on('add mess', function(data) {
+        // Встраиваем полученное сообщение в блок с сообщениями
+        // У блока с сообщением будет тот класс, который соответвует пользователю что его отправил
+        $all_messages.append("<div class='alert alert-" + data.className + "'><b>" + data.name + "</b>: " + data.mess + "</div>");
+      });
+
+    });
+  </script> -->
+</body>
+</html>
