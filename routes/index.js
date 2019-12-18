@@ -6,6 +6,9 @@ module.exports = function(app) {
 
   app.get('/chat', checkAuth, require('./chat').get)
 
+  app.get('/history', require('./history').get)
+  app.post('/history', require('./history').post)
+
   app.get('/login', redirectAuth, require('./login').get);
   app.post('/login', require('./login').post);
 

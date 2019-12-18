@@ -1,10 +1,12 @@
 <% layout('./layout/page') -%>
 <% block('item1', '<li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">XDDDDD</a></li>') -%>
 <% block('item2', '<li class="nav-item"><button class="nav-link" id="logout-btn" type="submit" style="background-color: #343a40!important; border-width: 0px">Выйти</button></li>') -%>
+<% block('item3', '<li class="nav-item"><a class="nav-link" href="/history" target="_blank">History</a></li>') -%>
 
 <div id="room" style="width: 80%; margin: 0 auto;">
   <p>Приветик, <%=user.get('username')%></p>
   <ul class="list-group"></ul>
+  <hr>
   <form>
     <input  class="form-control" autocomplete="off" autofocus placeholder="Сообщение...">
   </form>

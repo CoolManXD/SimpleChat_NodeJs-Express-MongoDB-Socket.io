@@ -1,0 +1,49 @@
+<% layout('./layout/page') -%>
+<% block('item1', '<li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">XDDDDD</a></li>') -%>
+<hr>
+
+<div id="room" style="width: 80%; margin: 0 auto;">
+  <ul class="list-group"></ul>
+  <hr>
+</div>
+
+
+<script>
+  $(function() {
+    var ul = $('#room ul');
+
+    // $.ajax({
+    //   // url: "http://localhost:3000/",  // the local Node server
+    //   url: "http://localhost:3000/history",
+    //   method: 'GET',
+    //   success: function(data2){
+    //     console.log(data2);
+    //     // data.quotesArray.forEach(element => {
+    //     //   $('<li>').append($('<i>').text(element.username + " " + element.message)).appendTo(ul);
+    //     // });
+    //     // Object.keys(data).forEach(function (key)
+    //     // {
+    //     //   $('<li>').append($('<i>').text(key.username + " " + key.message)).appendTo(ul);
+    //     // });
+    //     // $('<li>').append($('<i>').text(data.username + " " + data.message)).appendTo(ul);
+    //   }
+    // });
+    // --------
+    var ok = {"ok" : true};
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(ok),
+      contentType: 'application/json',
+      url: '/history',
+      statusCode: {
+          200: function(data) {
+          console.log(data);
+          data.forEach(element => {
+          $('<li>').append($('<i>').text(element.username + " > " + element.message)).appendTo(ul);
+        });
+        },
+      }
+  });
+    // -----------
+  });
+</script>

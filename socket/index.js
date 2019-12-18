@@ -6,6 +6,7 @@ var cookie = require('cookie');   // npm i cookie
 var session = require('../bd/session');
 var HttpError = require('../error').HttpError;
 var User = require('../bd/user').User;
+var HistoryMessage = require('../bd/history').HistoryMessage;
 
 function loadSession(sid, callback) {
 
@@ -115,15 +116,17 @@ module.exports = function(server) {
     io.sockets.on('connection', function(socket) {
         var username = socket.request.user.get('username');
         // var username = socket.handshake.user.get('username');
-    
+        HistoryMessage.saveMessage(username, username + " вошёл в чат")
         socket.broadcast.emit('join', username);
     
         socket.on('message', function(text, cb) {
+            HistoryMessage.saveMessage(username, text);
             socket.broadcast.emit('message', username, text);
             cb && cb();
         });
     
         socket.on('disconnect', function() {
+            HistoryMessage.saveMessage(username, username + " вышел из чата");
             socket.broadcast.emit('leave', username);
         });
     
